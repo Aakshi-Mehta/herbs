@@ -1,0 +1,21 @@
+-- -- Table for off-chain herb batch metadata
+-- CREATE TABLE herb_batches_offchain (
+--     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+--     batch_id VARCHAR(50) UNIQUE NOT NULL,
+--     herb_type VARCHAR(50),
+--     region VARCHAR(50),
+--     quantity_kg NUMERIC(8,2),
+--     photo_url TEXT,
+--     embedding_hash VARCHAR(100),
+--     raw_metadata JSONB,
+--     synced_onchain BOOLEAN DEFAULT FALSE,
+--     created_at TIMESTAMP DEFAULT NOW()
+-- );
+
+-- -- Table for embeddings
+-- CREATE TABLE embeddings (
+--     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+--     vector FLOAT8[], 
+--     hash VARCHAR(100),
+--     created_at TIMESTAMP DEFAULT NOW()
+-- );
