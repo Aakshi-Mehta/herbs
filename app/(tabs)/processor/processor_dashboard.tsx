@@ -1,6 +1,7 @@
 import { MaterialIcons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import Navbar from "../components/Navbar";
 
 export default function ProcessorDashboard() {
   const router = useRouter();
@@ -20,6 +21,8 @@ export default function ProcessorDashboard() {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
+       {/* ✅ Navbar added at top */}
+      <Navbar />
       <Text style={styles.title}>Welcome, Processor ID: Ar123</Text>
       
       <View style={styles.cardContainer}>
@@ -46,7 +49,8 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     backgroundColor: "#f0fdf4",
-    padding: 40,
+    paddingHorizontal: 20,
+    paddingTop: 40,
     alignItems: "center",
   },
   title: {
@@ -60,19 +64,20 @@ const styles = StyleSheet.create({
     width: "100%",
     flexDirection: "row",
     flexWrap: "wrap",
-    justifyContent: "space-between",
+    justifyContent: "space-around", // changed from space-between
   },
   card: {
     backgroundColor: "#dcfce7",
-    width: "48%",
-    marginBottom: 15,
-    marginTop: 15,
+    width: "45%", // slightly smaller to fit well
+    marginVertical: 10,
     borderRadius: 16,
-    padding: 30,
+    paddingVertical: 25, // reduced padding
+    paddingHorizontal: 10,
     shadowColor: "#000",
     shadowOpacity: 0.1,
     shadowRadius: 6,
     elevation: 4,
+    alignItems: "center", // center the content
   },
   specialCard: {
     backgroundColor: "#16a34a",

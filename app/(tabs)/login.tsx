@@ -38,7 +38,7 @@ export default function Login() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>TraceRoots Login</Text>
+      <Text style={styles.title}>AyurPramaan Login</Text>
 
       <Text style={styles.label}>Email</Text>
       <TextInput

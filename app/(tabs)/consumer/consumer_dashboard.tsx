@@ -3,13 +3,17 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import React from "react";
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import Navbar from "../components/Navbar";
 
 export default function ConsumerDashboard() {
   const router = useRouter();
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      {/* Header */}
+      {/* Navbar */}
+      <Navbar />
+
+      {/* Welcome Section */}
       <View style={styles.header}>
         <Text style={styles.greeting}>Welcome, Consumer 🌿</Text>
         <Text style={styles.subtitle}>
@@ -58,16 +62,16 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     backgroundColor: "#f0fdf4", // light green background (theme)
-    padding: 40,
-    alignItems: "center",
+    padding: 20,
   },
   header: {
     alignItems: "center",
     marginBottom: 30,
     paddingHorizontal: 10,
+    marginTop: 15, // spacing after navbar
   },
   greeting: {
-    fontSize: 28,
+    fontSize: 26,
     fontWeight: "bold",
     color: "#166534", // dark green
     textAlign: "center",
@@ -87,6 +91,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 40,
     borderRadius: 16,
     marginBottom: 40,
+    alignSelf: "center",
     shadowColor: "#000",
     shadowOpacity: 0.15,
     shadowRadius: 6,
@@ -106,6 +111,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#166534",
     marginBottom: 20,
+    textAlign: "left",
   },
   featureCard: {
     flexDirection: "row",

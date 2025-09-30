@@ -1,47 +1,81 @@
-import { Entypo, FontAwesome5, MaterialIcons } from '@expo/vector-icons'; // Icons
+// app/collector/collector_dashboard.tsx
+import { MaterialIcons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
+import React from "react";
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import Navbar from "../components/Navbar"; // ✅ reusable navbar
 
 export default function CollectorDashboard() {
   const router = useRouter();
-
-  // Dashboard options
-  const options = [
-    { title: "Capture Herb Data", icon: "leaf", iconType: "FontAwesome5", route: "/collector/capture-herb" },
-    { title: "Upload Herb Photos", icon: "camera", iconType: "Entypo", route: "/collector/upload-photos" },
-    { title: "Generate Batch & QR", icon: "qr-code", iconType: "MaterialIcons", route: "/collector/generate-batch" },
-    { title: "Offline Sync to Blockchain", icon: "sync", iconType: "MaterialIcons", route: "/collector/sync-blockchain" },
-    { title: "Sustainability Zone Map", icon: "map", iconType: "Entypo", route: "/collector/sustainability-map" },
-  ];
-
-  // Function to render icons dynamically
-  const renderIcon = (icon: string, type: string) => {
-    switch (type) {
-      case "MaterialIcons":
-        return <MaterialIcons name={icon as any} size={40} color="#15803d" />;
-      case "Entypo":
-        return <Entypo name={icon as any} size={40} color="#15803d" />;
-      case "FontAwesome5":
-        return <FontAwesome5 name={icon as any} size={40} color="#15803d" />;
-      default:
-        return null;
-    }
-  };
+  const collectorName = "Ramesh"; // 🔹 replace with dynamic user name later
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Collector Dashboard</Text>
+      {/* Navbar */}
+      <Navbar />
+
+      {/* Welcome Message */}
+      <Text style={styles.welcomeText}>Welcome Collector {collectorName} ! </Text>
+
+      {/* Top Status Card */}
+      <View style={styles.statusCard}>
+        <Text style={styles.statusTitle}>
+          📡 Sync Status: <Text style={{ color: "#c1f0f0ff" }}>Online</Text>
+        </Text>
+        <Text style={styles.statusText}>🌍 GPS: 28.61°N, 77.23°E</Text>
+        <Text style={styles.statusText}>🟢 Zone: Sustainable (Green)</Text>
+      </View>
+
+      {/* Features Grid */}
+      <Text style={styles.sectionTitle}>Collector Tools</Text>
       <View style={styles.grid}>
-        {options.map((option, index) => (
-          <TouchableOpacity
-            key={index}
-            style={styles.card}
-            onPress={() => router.push(option.route)}
-          >
-            {renderIcon(option.icon, option.iconType)}
-            <Text style={styles.cardText}>{option.title}</Text>
-          </TouchableOpacity>
-        ))}
+        <TouchableOpacity
+          style={styles.card}
+          onPress={() => router.push("/collector/new-collection")}
+        >
+          <MaterialIcons name="note-add" size={30} color="#15803d" />
+          <Text style={styles.cardText}>New Collection</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.card}
+          onPress={() => router.push("/collector/herb-fingerprint")}
+        >
+          <MaterialIcons name="camera-alt" size={30} color="#15803d" />
+          <Text style={styles.cardText}>Herb Fingerprint</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.card}
+          onPress={() => router.push("/collector/generate-batch")}
+        >
+          <MaterialIcons name="qr-code-2" size={30} color="#15803d" />
+          <Text style={styles.cardText}>Batch & QR</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.card}
+          onPress={() => router.push("/regulator/SustainabilityMap")}
+        >
+          <MaterialIcons name="map" size={30} color="#15803d" />
+          <Text style={styles.cardText}>Sustainability Map</Text>
+        </TouchableOpacity>
+      </View>
+
+      {/* Bottom Navigation */}
+      <View style={styles.bottomNav}>
+        <TouchableOpacity onPress={() => router.push("/collector/collector_dashboard")}>
+          <MaterialIcons name="home" size={32} color="#15803d" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => router.push("/collector/history")}>
+          <MaterialIcons name="history" size={32} color="#15803d" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => router.push("/collector/offline-sync")}>
+          <MaterialIcons name="cloud-upload" size={32} color="#15803d" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => router.push("/collector/profile")}>
+          <MaterialIcons name="person" size={32} color="#15803d" />
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );
@@ -50,16 +84,42 @@ export default function CollectorDashboard() {
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    backgroundColor: "#f0fdf4",
+    backgroundColor: "#f0fdf4", // themed light green
     padding: 20,
-    alignItems: "center",
   },
-  title: {
-    fontSize: 26,
-    fontWeight: "bold",
-    color: "#15803d",
-    marginBottom: 30,
+  welcomeText: {
+    fontSize: 30,
+    fontWeight: "600",
+    color: "#166534",
+    marginBottom: 20,
     textAlign: "center",
+  },
+  statusCard: {
+    backgroundColor: "#166534",
+    borderRadius: 16,
+    padding: 20,
+    marginBottom: 25,
+    shadowColor: "#000",
+    shadowOpacity: 0.08,
+    shadowRadius: 6,
+    elevation: 3,
+  },
+  statusTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 6,
+    color: "#f6f9f9ff",
+  },
+  statusText: {
+    fontSize: 15,
+    color: "#ffffffff",
+    marginTop: 4,
+  },
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#166534",
+    marginBottom: 20,
   },
   grid: {
     flexDirection: "row",
@@ -69,21 +129,31 @@ const styles = StyleSheet.create({
   card: {
     width: "47%",
     backgroundColor: "#fff",
-    padding: 20,
     borderRadius: 16,
-    marginBottom: 15,
+    paddingVertical: 25,
     alignItems: "center",
+    marginBottom: 18,
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    elevation: 5,
+    shadowOpacity: 0.08,
+    shadowRadius: 6,
+    elevation: 3,
   },
   cardText: {
-    marginTop: 12,
-    fontSize: 15,
+    fontSize: 14,
     fontWeight: "600",
+    marginTop: 10,
     color: "#374151",
-    textAlign: "center",
+  },
+  bottomNav: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    paddingVertical: 20,
+    backgroundColor: "#fff",
+    borderRadius: 20,
+    marginTop: 100,
+    shadowColor: "#000",
+    shadowOpacity: 0.08,
+    shadowRadius: 4,
+    elevation: 2,
   },
 });

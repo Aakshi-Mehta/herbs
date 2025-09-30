@@ -1,6 +1,7 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import Navbar from "../components/Navbar";
 
 export default function RegulatorDashboard() {
   const router = useRouter();
@@ -9,7 +10,7 @@ export default function RegulatorDashboard() {
     {
       title: "Digital Twin & Sustainability",
       actions: [
-        { title: "Live Interactive Map", icon: "map", route: "/regulator/map" },
+        { title: "Live Interactive Map", icon: "map", route: "/regulator/SustainabilityMap" },
         { title: "Zone Details", icon: "layers", route: "/regulator/zone-details" },
       ],
     },
@@ -47,7 +48,9 @@ export default function RegulatorDashboard() {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Welcome, Regulator</Text>
+            
+      <Navbar />
+      <Text style={styles.title}>Welcome Regulator ID: REG12</Text>
 
       {sections.map((section, sIndex) => (
         <View key={sIndex} style={styles.section}>
