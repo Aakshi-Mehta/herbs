@@ -1,3 +1,4 @@
+// app/index.tsx
 import { useRouter } from "expo-router";
 import { useEffect } from "react";
 import { ActivityIndicator, StyleSheet, View } from "react-native";
@@ -7,8 +8,8 @@ export default function Index() {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      router.replace("/login");
-    }, 100); // slight delay lets RootLayout mount first
+      router.replace("/firstpage"); // redirect to FirstPage instead of login
+    }, 100);
 
     return () => clearTimeout(timeout);
   }, []);
@@ -25,6 +26,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#dcfce7", // green-100
+    backgroundColor: "#dcfce7",
   },
 });

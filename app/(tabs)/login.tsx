@@ -32,7 +32,7 @@ export default function Login() {
         Alert.alert("Invalid Collector credentials");
       }
     }
-    else if (role === "Regulator") router.push("/dashboard/regulator");
+    else if (role === "Regulator") router.push("/regulator/regulator_dashboard");
     else if (role === "Consumer") router.push("/consumer/consumer_dashboard");
   };
 

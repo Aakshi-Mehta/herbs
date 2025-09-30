@@ -1,8 +1,8 @@
 // app/consumer/consumer_dashboard.tsx
-import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
+import React from "react";
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function ConsumerDashboard() {
   const router = useRouter();
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     backgroundColor: "#f0fdf4", // light green background (theme)
-    padding: 20,
+    padding: 40,
     alignItems: "center",
   },
   header: {
